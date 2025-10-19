@@ -1,11 +1,13 @@
 package com.vitorcamilodev.mongo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vitorcamilodev.mongo.domain.User;
+import com.vitorcamilodev.mongo.exception.ObjectNotFoundException;
 import com.vitorcamilodev.mongo.repositories.UserRepository;
 
 @Service
@@ -16,5 +18,10 @@ public class UserService {
 	
 	public List<User> findAll(){
 		return userRepository.findAll();
+	}
+	
+	public User findById(String id) {
+		Optional<User> optional = userRepository.findById(id);
+		return optional.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
 }
