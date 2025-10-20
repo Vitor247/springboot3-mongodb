@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import com.vitorcamilodev.mongo.domain.Post;
 import com.vitorcamilodev.mongo.domain.User;
 import com.vitorcamilodev.mongo.dto.AuthorDTO;
+import com.vitorcamilodev.mongo.dto.CommentDTO;
 import com.vitorcamilodev.mongo.repositories.PostRepository;
 import com.vitorcamilodev.mongo.repositories.UserRepository;
 
@@ -42,6 +43,13 @@ public class Instantiate implements CommandLineRunner{
 		
 		Post post = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para São Paulo", new AuthorDTO(anna));
 		Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje", new AuthorDTO(anna));
+		
+		CommentDTO c = new CommentDTO("Boa viagem", sdf.parse("21/03/2018"), new AuthorDTO(john));
+		CommentDTO c2 = new CommentDTO("Aproveite", sdf.parse("22/03/2018"), new AuthorDTO(laura));
+		CommentDTO c3 = new CommentDTO("Tenha um ótimo dia", sdf.parse("23/03/2018"), new AuthorDTO(peter));
+
+		post.getComments().addAll(Arrays.asList(c, c2));
+		post2.getComments().addAll(Arrays.asList(c3));		
 		
 		postRepository.saveAll(Arrays.asList(post, post2));
 		
