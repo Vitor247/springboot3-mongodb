@@ -33,6 +33,8 @@ cd springboot3-mongo
 
 ## Endpoints da API
 
+Coleção para importar no [postman](https://github.com/Vitor247/springboot3-mongodb/blob/main/Mongo.postman_collection.json).
+
 | Método | Endpoint            | Função                             |
 | :----: | ------------------- | ---------------------------------- |
 |   GET  | `/users`            | Retorna todos os usuários          |
